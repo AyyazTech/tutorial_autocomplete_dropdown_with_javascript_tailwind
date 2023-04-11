@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div
+      class="w-full h-[100vh] bg-slate-200 flex justify-center items-center flex-col"
+    >
+      <div class="w-96 relative" onclick="event.stopImmediatePropagation();">
+        <input
+          id="autocompleteInput"
+          placeholder="Select country name"
+          class="px-5 py-3 w-full border border-gray-300 rounded-md"
+          onkeyup="onkeyUp(event)"
+        />
+        <div
+          id="dropdown"
+          class="w-full h-60 border border-gray-300 rounded-md bg-white absolute overflow-y-auto hidden"
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      let countries = [
+        { name: "Afghanistan", code: "AF" },
+        { name: "Åland Islands", code: "AX" },
+        { name: "Albania", code: "AL" },
+        { name: "Algeria", code: "DZ" },
+        { name: "American Samoa", code: "AS" },
+        { name: "AndorrA", code: "AD" },
+        { name: "Angola", code: "AO" },
+        { name: "Anguilla", code: "AI" },
+        { name: "Antarctica", code: "AQ" },
+        { name: "Antigua and Barbuda", code: "AG" },
+        { name: "Argentina", code: "AR" },
+        { name: "Armenia", code: "AM" },
+        { name: "Aruba", code: "AW" },
+        { name: "Australia", code: "AU" },
+        { name: "Austria", code: "AT" },
+        { name: "Azerbaijan", code: "AZ" },
+        { name: "Bahamas", code: "BS" },
+        { name: "Bahrain", code: "BH" },
+        { name: "Bangladesh", code: "BD" },
+        { name: "Barbados", code: "BB" },
+        { name: "Belarus", code: "BY" },
+        { name: "Belgium", code: "BE" },
+        { name: "Belize", code: "BZ" },
+        { name: "Benin", code: "BJ" },
+        { name: "Bermuda", code: "BM" },
+        { name: "Bhutan", code: "BT" },
+        { name: "Bolivia", code: "BO" },
+        { name: "Bosnia and Herzegovina", code: "BA" },
+        { name: "Botswana", code: "BW" },
+        { name: "Bouvet Island", code: "BV" },
+        { name: "Brazil", code: "BR" },
+        { name: "British Indian Ocean Territory", code: "IO" },
+        { name: "Brunei Darussalam", code: "BN" },
+        { name: "Bulgaria", code: "BG" },
+        { name: "Burkina Faso", code: "BF" },
+        { name: "Burundi", code: "BI" },
+        { name: "Cambodia", code: "KH" },
+        { name: "Cameroon", code: "CM" },
+        { name: "Canada", code: "CA" },
+        { name: "Cape Verde", code: "CV" },
+        { name: "Cayman Islands", code: "KY" },
+        { name: "Central African Republic", code: "CF" },
+        { name: "Chad", code: "TD" },
+      ];
+      function onkeyUp(e) {
+        let keyword = e.target.value;
+        let dropdownEl = document.querySelector("#dropdown");
+        dropdownEl.classList.remove("hidden");
+        let filteredCountries = countries.filter((c) =>
+          c.name.toLowerCase().includes(keyword.toLowerCase())
+        );
+
+        renderOptions(filteredCountries);
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        renderOptions(countries);
+      });
+
+      function renderOptions(options) {
+        let dropdownEl = document.querySelector("#dropdown");
+
+        let newHtml = ``;
+
+        options.forEach((country) => {
+          newHtml += `<div
+            onclick="selectOption('${country.name}')"
+            class="px-5 py-3 border-b border-gray-200 text-stone-600 cursor-pointer hover:bg-slate-100 transition-colors"
+          >
+            ${country.name}
+          </div>`;
+        });
+
+        dropdownEl.innerHTML = newHtml;
+      }
+
+      function selectOption(selectedOption) {
+        hideDropdown();
+        let input = document.querySelector("#autocompleteInput");
+        input.value = selectedOption;
+      }
+
+      document.addEventListener("click", () => {
+        hideDropdown();
+      });
+
+      function hideDropdown() {
+        let dropdownEl = document.querySelector("#dropdown");
+        dropdownEl.classList.add("hidden");
+      }
+    </script>
+  </body>
+</html>
