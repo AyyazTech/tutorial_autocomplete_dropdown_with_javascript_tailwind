@@ -1,4 +1,4 @@
-# tutorial_autocomplete_dropdown_with_javascript_tailwind
+# Build a Dynamic Autocomplete Dropdown with JavaScript & Tailwind CSS!
 # Youtube Video Tutorial: https://www.youtube.com/watch?v=C3F2MJSSkT8
 
 Unlock the power of autocomplete in this step-by-step tutorial! Learn how to create a sleek, user-friendly suggestion dropdown menu using JavaScript and Tailwind CSS. Boost your web development skills and enhance your website's user experience with this must-watch guide. No time to waste—start building your custom autocomplete dropdown now!🚀
